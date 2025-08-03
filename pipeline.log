@@ -1,0 +1,25 @@
+2025-08-01 23:08:34,269 - INFO - Loading data...
+2025-08-01 23:08:34,269 - ERROR - Pipeline failed due to an error
+Traceback (most recent call last):
+  File "c:\Users\T490\Documents\Machine Learning Unsupervised clustering\mall_segmentation_project\main.py", line 9, in main
+    df = load_data("data/mall_customers.csv")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\T490\Documents\Machine Learning Unsupervised clustering\mall_segmentation_project\features\preprocessing.py", line 5, in load_data
+    return pd.read_csv(path)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\T490\anaconda3\envs\clustering-env\Lib\site-packages\pandas\io\parsers\readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\T490\anaconda3\envs\clustering-env\Lib\site-packages\pandas\io\parsers\readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\T490\anaconda3\envs\clustering-env\Lib\site-packages\pandas\io\parsers\readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\T490\anaconda3\envs\clustering-env\Lib\site-packages\pandas\io\parsers\readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "C:\Users\T490\anaconda3\envs\clustering-env\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data/mall_customers.csv'

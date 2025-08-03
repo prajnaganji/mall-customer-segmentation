@@ -1,0 +1,22 @@
+2025-08-01 22:57:30,041 - INFO - Loading data...
+2025-08-01 22:57:30,061 - INFO - Preprocessing data...
+2025-08-01 22:57:30,061 - ERROR - Pipeline failed due to an error
+Traceback (most recent call last):
+  File "C:\Users\T490\Documents\Machine Learning Unsupervised clustering\mall_segmentation_project\main.py", line 12, in main
+    X_scaled, original_df = preprocess_data(df)
+                            ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\T490\Documents\Machine Learning Unsupervised clustering\mall_segmentation_project\features\preprocessing.py", line 8, in preprocess_data
+    df = df.drop(columns=['CustomerID'])
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\T490\anaconda3\envs\clustering-env\Lib\site-packages\pandas\core\frame.py", line 5581, in drop
+    return super().drop(
+           ^^^^^^^^^^^^^
+  File "C:\Users\T490\anaconda3\envs\clustering-env\Lib\site-packages\pandas\core\generic.py", line 4788, in drop
+    obj = obj._drop_axis(labels, axis, level=level, errors=errors)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\T490\anaconda3\envs\clustering-env\Lib\site-packages\pandas\core\generic.py", line 4830, in _drop_axis
+    new_axis = axis.drop(labels, errors=errors)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\T490\anaconda3\envs\clustering-env\Lib\site-packages\pandas\core\indexes\base.py", line 7070, in drop
+    raise KeyError(f"{labels[mask].tolist()} not found in axis")
+KeyError: "['CustomerID'] not found in axis"
