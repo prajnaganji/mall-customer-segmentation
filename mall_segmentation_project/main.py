@@ -1,38 +1,42 @@
+import streamlit as st
 from features.preprocessing import load_data, preprocess_data
 from models.train import kmeans_clustering
+import pandas as pd
 
 def main():
-    print(" main.py is running...")
+    st.set_page_config(page_title="Mall Customer Segmentation", layout="wide")
+    st.title("🛍️ Mall Customer Segmentation with K-Means")
 
+    # Load Data
+    st.subheader("📥 Load Dataset")
     try:
-        print(" Loading data...")
         df = load_data("data/mall_customers.csv")
-
-        print(" Columns:", df.columns.tolist())
-        print(" Data loaded. Shape:", df.shape)
-
-        print(" Preprocessing data...")
-        X_scaled, original_df = preprocess_data(df)
-        print(" Preprocessing complete. Scaled shape:", X_scaled.shape)
-
-        print(" Running KMeans clustering...")
-        model, labels, score = kmeans_clustering(X_scaled)
-
-        print(f" Clustering done. Silhouette Score: {score:.2f}")
-
-        original_df["Cluster"] = labels
-        print(" Clustered data preview:")
-        print(original_df.head())
-
-        # Optional output
-        original_df.to_csv("data/clustered_output.csv", index=False)
-        print(" Results saved to data/clustered_output.csv")
-
+        st.success("Data Loaded Successfully!")
+        st.dataframe(df.head())
     except Exception as e:
-        print(" Pipeline failed:")
-        print(str(e))
+        st.error(f"Failed to load data: {e}")
+        return
+
+    # Preprocessing
+    st.subheader("🔧 Preprocess Data")
+    try:
+        X_scaled, original_df = preprocess_data(df)
+        st.write("Scaled Data Shape:", X_scaled.shape)
+    except Exception as e:
+        st.error(f"Preprocessing failed: {e}")
+        return
+
+    # Clustering
+    st.subheader("🔄 Run K-Means Clustering")
+    try:
+        result_df = kmeans_clustering(X_scaled, original_df, n_clusters=5)
+        st.success("Clustering Complete!")
+        st.dataframe(result_df.head())
+
+        # Optionally show cluster counts
+        st.bar_chart(result_df['Cluster'].value_counts())
+    except Exception as e:
+        st.error(f"Clustering failed: {e}")
 
 if __name__ == "__main__":
-    print(" Entry point reached.")
     main()
-    print(" Script finished.")
